@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:32:04 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/10 18:00:03 by etorren          ###   ########.fr       */
+/*   Updated: 2020/08/10 18:20:58 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,17 +100,21 @@ char **build_submap(long int rows, long int cols, char **map)
 
 void		find_biggest(char **map)
 {
-	char		full;
+	int			i;
 	long int	rows;
 	long int	cols;
 	char		**submap;
 
+	i = 0;
 	rows = count_rows(map);
 	cols = count_cols(map);
 	submap = build_submap(rows, cols, map);
-	full = map[0][3];
-
-
-
+	convert_obs(submap, map);
+	fill_map(find_max(rows, cols, submap), submap, map);
+	while (i < rows - 1)
+		{
+			printf("%s\n", map[i]);
+			i++;
+		}
 	return;
 }

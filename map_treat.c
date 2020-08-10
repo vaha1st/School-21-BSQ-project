@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 13:53:19 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/10 18:03:14 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/10 18:22:19 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		find_max(long int rows, long int cols, char **submap)
 	return (max);
 }
 
-char	**fill_map(char max, char **submap, char **map)
+void	fill_map(char max, char **submap, char **map)
 {
 	int i;
 	int j;
@@ -59,7 +59,7 @@ char	**fill_map(char max, char **submap, char **map)
 				}
 }
 
-char	**convert_obs(char **submap, char **map)
+void	convert_obs(char **submap, char **map)
 {
 	int i;
 	int j;

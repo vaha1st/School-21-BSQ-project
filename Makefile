@@ -6,11 +6,11 @@
 #    By: masharla <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/09 19:53:43 by masharla          #+#    #+#              #
-#    Updated: 2020/08/10 10:36:20 by masharla         ###   ########.fr        #
+#    Updated: 2020/08/10 18:18:31 by masharla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC		= main.c logic.c read_file.c helpers.c
+SRC		= main.c logic.c read_file.c helpers.c map_treat.c
 BIN		= bsq
 CONVO	= ${SRC:.c=.o}
 FLAGS	= -Wall -Wextra -Werror
