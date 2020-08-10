@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:27:57 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/10 10:57:12 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/10 13:23:39 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,9 @@ void	ft_putstr(char *str);
 char	**std_input();
 char	**file_input();
 void	find_biggest(char **map);
+char	min(char m1, char m2, char m3);
+char	min(char m1, char m2, char m3);
+char	min(char m1, char m2, char m3);
+char	**build_submap(long int rows, long int cols, char **map);
 
 #endif
