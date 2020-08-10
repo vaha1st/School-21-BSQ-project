@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 13:53:19 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/10 19:05:55 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/10 22:07:10 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,49 +40,38 @@ void	fill_map(char max, char **submap, char **map)
 	int i;
 	int j;
 	int	i_size;
-	int j_size;
+	int	j_size;
 
 	i = 0;
 	j = 0;
 	i_size = max - 48;
+	map[0][1] = 1;
 	printf("max = %d\n", max);
 	printf("map[0][1] = %d\n", map[0][1]);
-	printf("i_size = %d\n", i_size);
-	j_size = max - 48;
 	while (submap[i++])
-	printf("====>>\n");
-		while (submap[i][j++])
-			if (submap[i][j] == max)
-				while (i_size--)
-				{
-					while(j_size--)
-					{
-						map[i + 1][j] = max;
-						j--;
-					}
-					j += (max - map[0][1]);
-					i--;
-				}
-}
-
-void	convert_obs(char **submap, char **map)
-{
-	int i;
-	int j;
-
-	i = 0;
-	j = 0;
-	while (submap[i])
 	{
-		while (submap[i][j])
+		while (submap[i][j++])
 		{
-			if (submap[i][j] == map[0][2])
-				submap[i][j] = 48;
-			if (submap[i][j] == map[0][1])
-				submap[i][j] = 49;
-			j++;
+			if (submap[i][j] == max)
+			{
+				while (i_size)
+				{
+					j_size = max - 48;
+					while(j_size)
+					{
+						 printf("map[%d+1][%d] = '%c' : max = %c\n", i, j, map[i + 1][j],  max);
+						map[i + 1][j] = map[0][3];
+						j--;
+						j_size--;
+					}
+					j += (max - 48);
+					i--;
+					i_size--;
+				}
+				return ;
+			}
 		}
 		j = 0;
-		i++;
 	}
 }
+

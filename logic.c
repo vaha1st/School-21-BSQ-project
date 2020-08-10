@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:32:04 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/10 19:02:28 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/10 22:10:15 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ long int	count_rows(char **map)
 	int i;
 	
 	i = 0;
-	printf("==> count_rows HERE");
+	printf("==> count_rows HERE\n");
 	while (map[i][0])
+	{printf("%d\n", i);
 		i++;
+	}
 	printf("==> count_rows OK: rows = %d\n", i);
 	return (i);
 }
@@ -41,7 +43,7 @@ long int	count_cols(char **map)
 	int i;
 	
 	i = 0;
-	printf("==> count_cols HERE");
+	printf("==> count_cols HERE\n");
 	while (map[0][i])
 		i++;
 	printf("==> count_cols OK: cols = %d\n", i);
@@ -94,6 +96,14 @@ char **build_submap(long int rows, long int cols, char **map)
 		printf("%s\n", submap[i]);
 		i++;
 	}
+	printf("--------\n");
+	i = 0;
+	while (i < rows)
+	{
+		printf("%s\n", map[i]);
+		i++;
+	}
+
 	//delete <<
 	return (submap);
 }
@@ -107,12 +117,11 @@ void		find_biggest(char **map)
 
 	i = 0;
 	rows = count_rows(map);
+	printf("==> Here\n");
 	cols = count_cols(map);
 	submap = build_submap(rows, cols, map);
-	convert_obs(submap, map);
 	fill_map(find_max(rows, cols, submap), submap, map);
-	printf("==> Here\n");
-	while (i < rows - 1)
+	while (i < rows)
 		{
 			printf("%s\n", map[i]);
 			i++;
