@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:32:04 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/10 18:20:58 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/10 19:02:28 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,14 @@ char **build_submap(long int rows, long int cols, char **map)
 	while (i < rows - 1)
 	{
 		submap[i] = (char *)malloc(sizeof(char) * cols);
-		submap[i][0] = map[1 + i][0];
+		submap[i][0] = convert(map[1 + i][0], map[0][1], map[0][2]);
 		i++;
 	}
 	submap[i] = "\0";
 	printf("==> submap rows OK: записано элементов: %d\n", i);
 	while (j < cols)
 	{
-		submap[0][j] = map[1][j];
+		submap[0][j] = convert(map[1][j], map[0][1], map[0][2]);
 		j++;
 	}
 	printf("==> submap cols OK: записано элементов: %d\n", j);
@@ -79,7 +79,7 @@ char **build_submap(long int rows, long int cols, char **map)
 		{
 			printf("j++\n");
 			(map[i + 1][j] == map[0][1] ? (submap[i][j] = min(submap[i][j-1],\
-			submap[i-1][j], submap[i-1][j-1]) + 1) : ((submap[i][j] = map[0][2]) && printf("==> min SKIP\n")));
+			submap[i-1][j], submap[i-1][j-1]) + 1) : ((submap[i][j] = convert(map[0][2], map[0][1], map[0][2])) && printf("==> min SKIP\n")));
 			j++;
 		}
 	//	submap[i][j] = '\0';
@@ -111,6 +111,7 @@ void		find_biggest(char **map)
 	submap = build_submap(rows, cols, map);
 	convert_obs(submap, map);
 	fill_map(find_max(rows, cols, submap), submap, map);
+	printf("==> Here\n");
 	while (i < rows - 1)
 		{
 			printf("%s\n", map[i]);

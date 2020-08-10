@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:36:29 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/10 10:38:11 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/10 18:59:13 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,14 @@ int		ft_strlen(char *str)
 		count++;
 	}
 	return (count);
+}
+
+char	convert(char c, char empty, char obst)
+{
+	if (c == empty)
+		return ('1');
+	else if (c == obst)
+		return ('0');
+	else
+		return (c);
 }
