@@ -1,0 +1,5 @@
+# Finder trash
+*.DS_Store
+
+# Resources 0f ex07
+/resources
