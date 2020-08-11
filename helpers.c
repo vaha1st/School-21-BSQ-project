@@ -6,11 +6,22 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:36:29 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/10 18:59:13 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/11 12:10:49 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bsq.h"
+
+/*
+** ft_putstr(*) puts a string on standart output.
+**
+** ft_strlen(*) counts length of a string.
+**
+** convert(*) converts given char 'c' with handy 'obcstacle' or 'empty'\
+** character if it mathes or doing nothing if it's not. Returns 'c'.
+**
+** min(*) finds a less character by ascii of three given.
+*/
 
 void	ft_putstr(char *str)
 {
@@ -41,4 +52,14 @@ char	convert(char c, char empty, char obst)
 		return ('0');
 	else
 		return (c);
+}
+
+char	min(char m1, char m2, char m3)
+{
+	char tmp;
+
+	tmp = m1;
+	(tmp > m2 ? tmp = m2 : 1);
+	(tmp > m3 ? tmp = m3 : 1);
+	return (tmp);
 }
