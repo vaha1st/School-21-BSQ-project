@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 13:53:19 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/11 12:01:00 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/11 12:37:08 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,20 @@ void	free_map(char **map)
 	while (i < rows)
 		free(map[i++]);
 	free(map);
+}
+
+char *retrieve_params(char **map)
+{
+	long int	i;
+	long int	cols;
+	char		*params;
+
+	cols = count_cols(map);
+	i = 0;
+	params = (char *)malloc(sizeof(char) * 4);
+	while (i < 3)
+		params[i++] = map[0][--cols];
+	params[i] = '\0';
+	ft_putstr(params);
+	return (params);
 }

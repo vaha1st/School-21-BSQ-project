@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:27:57 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/11 12:11:57 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/11 12:47:48 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@ char		convert(char c, char empty, char obst);
 void		print_map_wo_header(char **map, long int rows);
 void		free_map(char **map);
 long int	count_rows(char **map);
+long int	count_cols(char **map);
+char		*retrieve_params(char **map);
 
 #endif

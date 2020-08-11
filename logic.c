@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:32:04 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/11 11:52:38 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/11 12:47:45 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void		find_biggest(char **map)
 	cols = count_cols(map);
 	submap = build_first_row_col(rows, cols, map);
 	build_remaining(rows, cols, map, submap);
+	retrieve_params(map);
 	ft_putstr("XXX====>\n");
 	fill_map(find_max(rows, cols, submap), submap, map);
 	free_map(submap);
