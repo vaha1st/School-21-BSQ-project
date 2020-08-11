@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:13:30 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/11 21:01:39 by etorren          ###   ########.fr       */
+/*   Updated: 2020/08/11 21:18:03 by etorren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@ void	read_file(char **av, char c)
 		return ;
 	map = map_create(av, rows, cols, c);
 	ft_puterr("----map created----\n");
+	if (check_map(map, retrieve_params(map)) == 1)
+		return ;
 	if (check_map(map, retrieve_params(map)) == -1)
 	{
-		ft_puterr("Map error: incorrect empty or obstacle char\n");
+		ft_puterr("Map error: incorrect char in map matrix\n");
 		return ;
 	}
 	find_biggest(map);

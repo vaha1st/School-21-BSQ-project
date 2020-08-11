@@ -6,7 +6,7 @@
 /*   By: etorren <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 20:46:48 by etorren           #+#    #+#             */
-/*   Updated: 2020/08/11 21:01:41 by etorren          ###   ########.fr       */
+/*   Updated: 2020/08/11 21:18:06 by etorren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,10 @@ int		check_map(char **map, char *head, long int rows)
 
 	i = 1;
 	if (head[0] == head[1] || head[0] == head[2] || head[1] == head[2])
-		return (-1);
+	{
+		ft_puterr("Map error: incorrect empty or obstacle char\n");
+		return (1);
+	}
 	while (i < rows)
 	{
 		j = 0;
