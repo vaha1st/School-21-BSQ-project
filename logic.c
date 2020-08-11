@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:32:04 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/11 12:47:45 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/11 13:12:15 by etorren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,13 @@ char		**build_first_row_col(long int rows, long int cols, char **map)
 }
 
 char		**build_remaining(long int rows, long int cols,\
-		char **map, char **submap)
+		char **map)
 {
 	int		i;
 	int		j;
+	char	**submap;
 
+	submap = build_first_row_col(rows, cols, map);
 	i = 1;
 	j = 1;
 	while (i < rows - 1)
@@ -103,9 +105,7 @@ void		find_biggest(char **map)
 	i = 0;
 	rows = count_rows(map);
 	cols = count_cols(map);
-	submap = build_first_row_col(rows, cols, map);
-	build_remaining(rows, cols, map, submap);
-	retrieve_params(map);
+	submap = build_remaining(rows, cols, map);
 	ft_putstr("XXX====>\n");
 	fill_map(find_max(rows, cols, submap), submap, map);
 	free_map(submap);
