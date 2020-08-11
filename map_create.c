@@ -6,7 +6,7 @@
 /*   By: etorren <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 20:46:48 by etorren           #+#    #+#             */
-/*   Updated: 2020/08/11 21:18:06 by etorren          ###   ########.fr       */
+/*   Updated: 2020/08/11 21:50:04 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	ft_puterr(char *str)
 	}
 }
 
-int		rows_size(char **av, char c)
+int		rows_size(char *av, char c)
 {
 	int			fd;
 	long int	rows;
 	ssize_t		ret;
 
 	rows = 0;
-	fd = open(av[1], O_RDONLY);
+	fd = open(av, O_RDONLY);
 	while ((ret = read(fd, &c, 1)) > 0)
 	{
 		write(1, &c, 1);
@@ -49,7 +49,7 @@ int		rows_size(char **av, char c)
 	return (rows);
 }
 
-int		cols_len(char **av, long int rows, char c)
+int		cols_len(char *av, long int rows, char c)
 {
 	int			fd;
 	long int	cols;
@@ -59,7 +59,7 @@ int		cols_len(char **av, long int rows, char c)
 
 	i = 0;
 	cols = 0;
-	fd = open(av[1], O_RDONLY);
+	fd = open(av, O_RDONLY);
 	while (i < rows - 1)
 	{
 		check = cols;
@@ -105,7 +105,7 @@ int		check_map(char **map, char *head, long int rows)
 	return (0);
 }
 
-char	**map_create(char **av, long int row, long int cols, char c)
+char	**map_create(char *av, long int row, long int cols, char c)
 {
 	long int	i;
 	int			j;
@@ -115,7 +115,7 @@ char	**map_create(char **av, long int row, long int cols, char c)
 
 	i = 0;
 	map = (char **)malloc(sizeof(map) * (row + 1));
-	fd = open(av[1], O_RDONLY);
+	fd = open(av, O_RDONLY);
 	while (i < row + 1)
 	{
 		j = 0;
