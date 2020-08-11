@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:32:04 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/11 13:12:15 by etorren          ###   ########.fr       */
+/*   Updated: 2020/08/11 17:10:22 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ long int	count_cols(char **map)
 	return (i);
 }
 
-char		**build_first_row_col(long int rows, long int cols, char **map)
+char		**build_first_row_col(long int rows, long int cols,\
+		char **map, char *params)
 {
 	int		i;
 	int		j;
@@ -57,41 +58,40 @@ char		**build_first_row_col(long int rows, long int cols, char **map)
 	while (i < rows - 1)
 	{
 		submap[i] = (char *)malloc(sizeof(char) * cols);
-		submap[i][0] = convert(map[1 + i][0], map[0][1], map[0][2]);
+		submap[i][0] = convert(map[1 + i][0], params[0], params[1]);
 		i++;
 	}
 	submap[i] = "\0";
 	while (j < cols)
 	{
-		submap[0][j] = convert(map[1][j], map[0][1], map[0][2]);
+		submap[0][j] = convert(map[1][j], params[0], params[1]);
 		j++;
 	}
 	return (submap);
 }
 
 char		**build_remaining(long int rows, long int cols,\
-		char **map)
+		char **map, char *params)
 {
 	int		i;
 	int		j;
 	char	**submap;
 
-	submap = build_first_row_col(rows, cols, map);
+	submap = build_first_row_col(rows, cols, map, params);
 	i = 1;
 	j = 1;
 	while (i < rows - 1)
 	{
 		while (j < cols)
 		{
-			(map[i + 1][j] == map[0][1] ? (submap[i][j] = min(submap[i][j - 1],\
+			(map[i + 1][j] == params[0] ? (submap[i][j] = min(submap[i][j - 1],\
 			submap[i - 1][j], submap[i - 1][j - 1]) + 1) :\
-			((submap[i][j] = convert(map[0][2], map[0][1], map[0][2]))));
+			((submap[i][j] = 0)));
 			j++;
 		}
 		i++;
 		j = 1;
 	}
-	i = 0;
 	return (submap);
 }
 
@@ -101,14 +101,16 @@ void		find_biggest(char **map)
 	long int	rows;
 	long int	cols;
 	char		**submap;
+	char		*params;
 
 	i = 0;
 	rows = count_rows(map);
 	cols = count_cols(map);
-	submap = build_remaining(rows, cols, map);
-	ft_putstr("XXX====>\n");
-	fill_map(find_max(rows, cols, submap), submap, map);
+	params = retrieve_params(map);
+	submap = build_remaining(rows, cols, map, params);
+	fill_map(find_max(rows, cols, submap), submap, map, params);
 	free_map(submap);
 	print_map_wo_header(map, rows);
 	free_map(map);
+	free(params);
 }

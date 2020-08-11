@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 13:53:19 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/11 12:37:08 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/11 17:08:02 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 **
 ** free_map(*) frees memory of all rows on map firstly, then frees\
 ** the map itself.
+**
+** retrieve_params(*) takes a header (first row) of the map and retrieves\
+** 'free', 'obstacle' and 'full' characters. Reterns result as a string.
 */
 
 int		find_max(long int rows, long int cols, char **submap)
@@ -33,7 +36,8 @@ int		find_max(long int rows, long int cols, char **submap)
 
 	i = 0;
 	j = 0;
-	while (i < rows)
+	max = 0;
+	while (i < rows - 1)
 	{
 		while (j < cols)
 		{
@@ -47,7 +51,7 @@ int		find_max(long int rows, long int cols, char **submap)
 	return (max);
 }
 
-void	fill_map(char max, char **submap, char **map)
+void	fill_map(char max, char **submap, char **map, char *params)
 {
 	int i;
 	int j;
@@ -57,21 +61,25 @@ void	fill_map(char max, char **submap, char **map)
 	i = 0;
 	j = 0;
 	i_size = max - 48;
-	while (submap[i++])
+	while (submap[i])
 	{
-		while (submap[i][j++])
+		while (submap[i][j])
+		{
 			if (submap[i][j] == max)
 			{
 				while (i_size--)
 				{
 					j_size = max - 48;
 					while (j_size--)
-						map[i + 1][j--] = map[0][3];
+						map[i + 1][j--] = params[2];
 					j += (max - 48);
 					i--;
 				}
 				return ;
 			}
+			j++;
+		}
+		i++;
 		j = 0;
 	}
 }
@@ -100,18 +108,25 @@ void	free_map(char **map)
 	free(map);
 }
 
-char *retrieve_params(char **map)
+char	*retrieve_params(char **map)
 {
 	long int	i;
-	long int	cols;
+	long int	rows;
+	int			count;
 	char		*params;
 
-	cols = count_cols(map);
+	count = 0;
+	rows = count_rows(map);
+	rows--;
 	i = 0;
+	while (rows)
+	{
+		rows /= 10;
+		count++;
+	}
 	params = (char *)malloc(sizeof(char) * 4);
 	while (i < 3)
-		params[i++] = map[0][--cols];
+		params[i++] = map[0][count++];
 	params[i] = '\0';
-	ft_putstr(params);
 	return (params);
 }
