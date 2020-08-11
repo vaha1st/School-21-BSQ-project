@@ -6,11 +6,12 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:32:04 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/11 17:10:22 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/11 21:01:44 by etorren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bsq.h"
+#include <stdio.h>
 
 /*
 ** count_rows(*) and count_cols(*) take the original map and count its\
@@ -28,7 +29,7 @@
 long int	count_rows(char **map)
 {
 	int i;
-
+	
 	i = 0;
 	while (map[i][0])
 		i++;
@@ -40,8 +41,12 @@ long int	count_cols(char **map)
 	int i;
 
 	i = 0;
-	while (map[0][i])
-		i++;
+	if (map[1])
+		while (map[1][i])
+			i++;
+	else
+		while (map[0][i])
+			i++;
 	return (i);
 }
 
@@ -86,11 +91,20 @@ char		**build_remaining(long int rows, long int cols,\
 		{
 			(map[i + 1][j] == params[0] ? (submap[i][j] = min(submap[i][j - 1],\
 			submap[i - 1][j], submap[i - 1][j - 1]) + 1) :\
-			((submap[i][j] = 0)));
+			((submap[i][j] = 48)));
 			j++;
 		}
 		i++;
 		j = 1;
+	}
+
+	i = 0;
+
+	printf("\n============Submap=========\n\n");
+	while (i < rows -1)
+	{
+		printf("%s\n", submap[i]);
+		i++;
 	}
 	return (submap);
 }
@@ -110,6 +124,7 @@ void		find_biggest(char **map)
 	submap = build_remaining(rows, cols, map, params);
 	fill_map(find_max(rows, cols, submap), submap, map, params);
 	free_map(submap);
+	printf("\n=========Final map========\n\n");
 	print_map_wo_header(map, rows);
 	free_map(map);
 	free(params);

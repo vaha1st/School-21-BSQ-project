@@ -6,86 +6,55 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:13:30 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/11 17:00:07 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/11 21:01:39 by etorren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bsq.h"
-#include <stdio.h>
+#include "read.h"
 
-int		main(int argc, char **argv)
+void	read_file(char **av, char c)
 {
-	(void) argc;
-	(void) argv;
-	char **map;
-	int i;
-	int j;
+	long int	rows;
+	long int	cols;
+	char		**map;
+
+	rows = 0;
+	cols = 0;
+	rows = rows_size(av, c);
+	if (rows == -1)
+		return ;
+	cols = cols_len(av, rows, c);
+	if (cols == -1)
+		return ;
+	map = map_create(av, rows, cols, c);
+	ft_puterr("----map created----\n");
+	if (check_map(map, retrieve_params(map)) == -1)
+	{
+		ft_puterr("Map error: incorrect empty or obstacle char\n");
+		return ;
+	}
+	find_biggest(map);
+}
+
+int		main(int ac, char **av)
+{
+	char	c;
+	int		i;
 
 	i = 0;
-	j = 0;
-	map = (char **)malloc(sizeof(map)*4);
-	printf("size map = %lu\n", sizeof(map));
-	while (i < 7)
+	c = 0;
+	if (ac < 2)
 	{
-		map[i] = (char *)malloc(sizeof(char) * 4);
-
-		i++;
+		ft_puterr("File name missing.\n");
+		return (1);
 	}
-
-//	if (argc < 2)
-//		map = std_input();
-//	else
-//		map = file_input();
-//	while (*map)
-//		find_biggest(map);
-	map[0][0] = '4';
-	map[0][1] = '.';
-	map[0][2] = 'o';
-	map[0][3] = 'x';
-	map[0][4] = '.';
-	map[0][5] = '.';
-	map[1][0] = '.';
-	map[1][1] = 'o';
-	map[1][2] = 'o';
-	map[1][3] = 'o';
-	map[1][4] = '.';
-	map[1][5] = '.';
-	map[2][0] = 'o';
-	map[2][1] = '.';
-	map[2][2] = '.';
-	map[2][3] = '.';
-	map[2][4] = '.';
-	map[2][5] = '.';
-	map[3][0] = '.';
-	map[3][1] = '.';
-	map[3][2] = '.';
-	map[3][3] = '.';
-	map[3][4] = '.';
-	map[3][5] = 'o';
-	map[4][0] = 'o';
-	map[4][1] = '.';
-	map[4][2] = '.';
-	map[4][3] = '.';
-	map[4][4] = '.';
-	map[4][5] = '.';
-	map[5][0] = 'o';
-	map[5][1] = '.';
-	map[5][2] = '.';
-	map[5][3] = '.';
-	map[5][4] = '.';
-	map[5][5] = '.';
-	map[6][0] = '\0';
-
-	printf("=======> HERE\n");
-
-/*	map[0] = "4.ox\0";
-	map[1] = ".ooo\0";
-	map[2] = "o...\0";
-	map[3] = "....\0";
-	map[4] = "oo.o\0";
-	map[5] = "\0";
-	*/
-
-	printf("==> map created\n");
-	find_biggest(map);
+	while (ac > 1)
+	{
+		read_file(&av[i], c);
+		ac--;
+		i++;
+		if (ac != 1)
+			ft_puterr("\n****======Next map=====****\n\n");
+	}
+	return (0);
 }

@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_read.c                                         :+:      :+:    :+:   */
+/*   map_create.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: etorren <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/11 13:15:50 by etorren           #+#    #+#             */
-/*   Updated: 2020/08/11 17:53:20 by etorren          ###   ########.fr       */
+/*   Created: 2020/08/11 20:46:48 by etorren           #+#    #+#             */
+/*   Updated: 2020/08/11 21:01:41 by etorren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bsq.h"
 #include <unistd.h>
 #include <fcntl.h>
-#include <stdio.h>
 
-void	ft_putstr2(char *str)
+void	ft_puterr(char *str)
 {
 	int i;
 
@@ -43,15 +42,14 @@ int		rows_size(char **av, char c)
 	}
 	if (ret < 0)
 	{
-		ft_putstr2("Cannot read file.\n");
+		ft_puterr("Cannot read file.\n");
 		return (-1);
 	}
 	close(fd);
-	printf("rows counts = %ld\n", rows);
 	return (rows);
 }
 
-int		cols_len(char **av, int rows, char c)
+int		cols_len(char **av, long int rows, char c)
 {
 	int			fd;
 	long int	cols;
@@ -69,10 +67,9 @@ int		cols_len(char **av, int rows, char c)
 		while ((ret = read(fd, &c, 1)) > 0 && c != '\n')
 			cols++;
 		i++;
-		printf("cols counts = %ld :  i = %ld  : check counts = %d\n", cols, i, check);
 		if (check != cols && i > 2)
 		{
-			ft_putstr2("## Map error: bad aligned ##\n");
+			ft_puterr("Map error: bad aligned\n");
 			return (-1);
 		}
 	}
@@ -80,27 +77,46 @@ int		cols_len(char **av, int rows, char c)
 	return (cols);
 }
 
-char	**map_create(char **av, int row, int cols, char c)
+int		check_map(char **map, char *head, long int rows)
 {
-	int		i;
-	int		j;
-	int		fd;
-	ssize_t	ret;
-	char	**map;
+	int i;
+	int j;
 
-	(void) cols;
-	i = 0;
-	map = (char **)malloc(sizeof(map) * (row + 1));
-	while (i < row + 1)
+	i = 1;
+	if (head[0] == head[1] || head[0] == head[2] || head[1] == head[2])
+		return (-1);
+	while (i < rows)
 	{
-		map[i] = (char *)malloc(sizeof(char) * (cols + 1));
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == head[0] || map[i][j] == head[1])
+			{
+				j++;
+			}
+			else
+				return (-1);
+		}
 		i++;
 	}
+	return (0);
+}
+
+char	**map_create(char **av, long int row, long int cols, char c)
+{
+	long int	i;
+	int			j;
+	int			fd;
+	ssize_t		ret;
+	char		**map;
+
 	i = 0;
+	map = (char **)malloc(sizeof(map) * (row + 1));
 	fd = open(av[1], O_RDONLY);
 	while (i < row + 1)
 	{
 		j = 0;
+		map[i] = (char *)malloc(sizeof(char) * (cols + 1));
 		while ((ret = read(fd, &c, 1)) > 0 && c != '\n')
 		{
 			map[i][j] = c;
@@ -109,42 +125,5 @@ char	**map_create(char **av, int row, int cols, char c)
 		map[i][j] = '\0';
 		i++;
 	}
-//	map[i][0] = '\0';
-
-	i = 0;
-	while (i < row)
-	{
-		printf("%s\n", map[i]);
-		i++;
-	}
-	close(fd);
-	printf("end\n");
 	return (map);
-}
-
-int		main(int ac, char **av)
-{
-	long int	rows;
-	long int	cols;
-	char		c;
-
-	rows = 0;
-	cols = 0;
-	c = 0;
-	if (ac < 2)
-		ft_putstr2("File name missing.\n");
-	else if (ac > 2)
-		ft_putstr2("Too many arguments.\n");
-	else
-	{
-		rows = rows_size(av, c);
-		if (rows == -1)
-			return (1);
-		cols = cols_len(av, rows, c);
-		if (cols == -1)
-			return (1);
-	}
-	printf("end map create\n");
-	find_biggest(map_create(av, rows, cols, c));
-	return (0);
 }
