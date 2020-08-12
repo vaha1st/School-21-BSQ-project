@@ -6,13 +6,26 @@
 /*   By: etorren <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 20:46:48 by etorren           #+#    #+#             */
-/*   Updated: 2020/08/11 21:50:04 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/12 12:11:49 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bsq.h"
+#include "read.h"
 #include <unistd.h>
 #include <fcntl.h>
+
+/*
+** ft_puterr(*) takes a string and display it in reserved for errors
+** output.
+**
+** row_size(*) scans given file and counts rows.
+**
+** cols_len(*)
+**
+** check_map(*)
+**
+** map_create(*)
+*/
 
 void	ft_puterr(char *str)
 {
@@ -34,6 +47,8 @@ int		rows_size(char *av, char c)
 
 	rows = 0;
 	fd = open(av, O_RDONLY);
+	if (fd < 0)
+		return (open_err());
 	while ((ret = read(fd, &c, 1)) > 0)
 	{
 		write(1, &c, 1);
@@ -41,10 +56,7 @@ int		rows_size(char *av, char c)
 			rows++;
 	}
 	if (ret < 0)
-	{
-		ft_puterr("Cannot read file.\n");
-		return (-1);
-	}
+		return (read_err(fd));
 	close(fd);
 	return (rows);
 }
@@ -60,6 +72,8 @@ int		cols_len(char *av, long int rows, char c)
 	i = 0;
 	cols = 0;
 	fd = open(av, O_RDONLY);
+	if (fd < 0)
+		return (open_err());
 	while (i < rows - 1)
 	{
 		check = cols;
@@ -68,10 +82,7 @@ int		cols_len(char *av, long int rows, char c)
 			cols++;
 		i++;
 		if (check != cols && i > 2)
-		{
-			ft_puterr("Map error: bad aligned\n");
-			return (-1);
-		}
+			return(bad_align_err());
 	}
 	close(fd);
 	return (cols);

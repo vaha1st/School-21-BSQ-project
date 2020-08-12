@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:13:30 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/11 21:55:28 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/12 11:57:19 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	read_file(char *av, char c)
 		return ;
 	map = map_create(av, rows, cols, c);
 	ft_puterr("----map created----\n");
-	if (check_map(map, retrieve_params(map)) == 1)
+	if (check_map(map, retrieve_params(map), rows) == 1)
 		return ;
-	if (check_map(map, retrieve_params(map)) == -1)
+	if (check_map(map, retrieve_params(map), rows) == -1)
 	{
 		ft_puterr("Map error: incorrect char in map matrix\n");
 		return ;
