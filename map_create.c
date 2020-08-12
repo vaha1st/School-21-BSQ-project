@@ -6,7 +6,7 @@
 /*   By: etorren <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 20:46:48 by etorren           #+#    #+#             */
-/*   Updated: 2020/08/12 16:09:55 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/12 17:00:15 by etorren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,12 @@ long int	rows_count(char *av, char c)
 	if (fd < 0)
 		return (open_err());
 	while ((ret = read(fd, &c, 1)) > 0)
+	{
 		if (c == '\n')
 			rows++;
+	}
+	if (c != '\n')
+		return (read_err(fd));
 	if (ret < 0)
 		return (read_err(fd));
 	if (rows == 1)

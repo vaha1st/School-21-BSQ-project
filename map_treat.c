@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 13:53:19 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/12 16:08:05 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/12 16:18:59 by etorren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,36 +48,41 @@ int		find_max(long int rows, long int cols, char **submap)
 	return (max);
 }
 
+void	fill_map_core(char max, char **map, int *i, char *params)
+{
+	int j_size;
+
+	j_size = max - 48;
+	while (j_size--)
+		map[i[0] + 1][i[1]--] = params[2];
+	i[1] += (max - 48);
+	i[0]--;
+}
+
 void	fill_map(char max, char **submap, char **map, char *params)
 {
-	int i;
-	int j;
+	int i[2];
 	int	i_size;
-	int	j_size;
 
-	i = 0;
-	j = 0;
+	i[0] = 0;
+	i[1] = 0;
 	i_size = max - 48;
-	while (submap[i])
+	while (submap[i[0]])
 	{
-		while (submap[i][j])
+		while (submap[i[0]][i[1]])
 		{
-			if (submap[i][j] == max)
+			if (submap[i[0]][i[1]] == max)
 			{
 				while (i_size--)
 				{
-					j_size = max - 48;
-					while (j_size--)
-						map[i + 1][j--] = params[2];
-					j += (max - 48);
-					i--;
+					fill_map_core(max, map, i, params);
 				}
 				return ;
 			}
-			j++;
+			i[1]++;
 		}
-		i++;
-		j = 0;
+		i[0]++;
+		i[1] = 0;
 	}
 }
 
