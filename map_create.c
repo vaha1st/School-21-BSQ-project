@@ -6,7 +6,7 @@
 /*   By: etorren <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 20:46:48 by etorren           #+#    #+#             */
-/*   Updated: 2020/08/12 17:35:08 by etorren          ###   ########.fr       */
+/*   Updated: 2020/08/12 18:47:59 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int			check_map(char **map, char *head, long int rows)
 	i = 1;
 	if (head[0] == head[1] || head[0] == head[2] || head[1] == head[2])
 	{
-		ft_puterr("map error: incorrect 'empty' or 'obstacle' char\n");
+		ft_puterr("map error\n");
 		return (1);
 	}
 	while (i < rows)
@@ -132,7 +132,7 @@ char		**map_create(char *av, long int row, long int cols, char c)
 	while (i < row + 1)
 	{
 		j = 0;
-		map[i] = (char *)malloc(sizeof(char) * (cols + 1));
+		map[i] = (char *)malloc(sizeof(char) * (cols + 6));
 		while ((ret = read(fd, &c, 1)) > 0 && c != '\n')
 		{
 			map[i][j] = c;

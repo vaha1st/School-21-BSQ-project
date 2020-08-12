@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:32:04 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/12 17:48:48 by etorren          ###   ########.fr       */
+/*   Updated: 2020/08/12 18:33:54 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char		**build_first_row_col(long int rows, long int cols,\
 	submap = (char **)malloc(sizeof(submap) * rows);
 	while (i < rows - 1)
 	{
-		submap[i] = (char *)malloc(sizeof(char) * cols);
+		submap[i] = (char *)malloc(sizeof(char) * cols + 1);
 		submap[i][0] = convert(map[1 + i][0], params[0], params[1]);
 		i++;
 	}
@@ -115,7 +115,7 @@ void		find_biggest(char **map)
 	params = retrieve_params(map);
 	if (check_num(map) < 0 || ft_strlen(params) < 3)
 	{
-		ft_puterr("map error: map header invalid.\n");
+		ft_puterr("map error\n");
 		return ;
 	}
 	submap = build_remaining(rows, cols, map, params);

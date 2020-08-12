@@ -39,7 +39,7 @@ void	read_file(char *av, char c)
 		return ;
 	if (check_map(map, retrieve_params(map), rows) == -1)
 	{
-		ft_puterr("map error: incorrect char in map matrix\n");
+		ft_puterr("map error\n");
 		return ;
 	}
 	find_biggest(map);

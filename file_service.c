@@ -22,13 +22,13 @@
 
 int		open_err(void)
 {
-	ft_puterr("map error: can not open file.\n");
+	ft_puterr("map error\n");
 	return (-1);
 }
 
 int		bad_align_err(void)
 {
-	ft_puterr("map error: bad aligned.\n");
+	ft_puterr("map error\n");
 	return (-1);
 }
 
@@ -36,7 +36,7 @@ int		read_err(int fd)
 {
 	if (fd >= 0)
 		close(fd);
-	ft_puterr("map error: cannot read map.\n");
+	ft_puterr("map error\n");
 	return (-1);
 }
 

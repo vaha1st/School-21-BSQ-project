@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 13:53:19 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/12 16:18:59 by etorren          ###   ########.fr       */
+/*   Updated: 2020/08/12 18:31:54 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int		check_num(char **map)
 		rows /= 10;
 		count++;
 	}
-	num = (char *)malloc(sizeof(char) * count);
+	num = (char *)malloc(sizeof(char) * count + 1);
 	while (i < count)
 	{
 		num[i] = map[0][i];
