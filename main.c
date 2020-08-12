@@ -6,11 +6,19 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:13:30 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/12 13:06:33 by etorren          ###   ########.fr       */
+/*   Updated: 2020/08/12 13:39:54 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "read.h"
+
+/*
+** The program find the biggest square on a map, avoiding obstacles.
+** Features: Reads n amount of files. Supports manual input.
+**
+** read_file(*) takes given as parameter file and apply logic\
+** that find biggest square to this file.
+*/
 
 void	read_file(char *av, char c)
 {

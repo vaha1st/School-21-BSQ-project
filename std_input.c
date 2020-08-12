@@ -6,15 +6,15 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 18:30:05 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/12 13:01:50 by etorren          ###   ########.fr       */
+/*   Updated: 2020/08/12 13:41:14 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "read.h"
 
 /*
-** std_input_read(*) reads from standard input line by line and
-** stops when ^D is occure. Result writes to the file with
+** std_input_read(*) reads from standard input line by line and\
+** stops when ^D is occure. Result writes to the file with\
 ** file name given as parameter.
 */
 

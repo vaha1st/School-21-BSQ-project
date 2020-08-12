@@ -6,7 +6,7 @@
 /*   By: etorren <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 20:46:48 by etorren           #+#    #+#             */
-/*   Updated: 2020/08/12 13:00:36 by etorren          ###   ########.fr       */
+/*   Updated: 2020/08/12 13:42:48 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@
 ** ft_puterr(*) takes a string and display it in reserved for errors
 ** output.
 **
-** row_size(*) scans given file and counts rows.
+** rows_count(*) scans given file and counts rows.
 **
-** cols_len(*)
+** rows_len(*) scans given file and counts length of single row.
 **
-** check_map(*)
+** check_map(*) checks map and header on incorrect data.
 **
-** map_create(*)
+** map_create(*) reads file and creates a map filling it char by char.\
+** Ads null pointer to the end of each line.
 */
 
 void	ft_puterr(char *str)
@@ -55,7 +56,7 @@ int		rows_count(char *av, char c)
 	if (ret < 0)
 		return (read_err(fd));
 	if (rows == 1)
-		return(read_err(fd));
+		return (read_err(fd));
 	close(fd);
 	return (rows);
 }
@@ -81,7 +82,7 @@ int		rows_len(char *av, long int rows, char c)
 			cols++;
 		i++;
 		if (check != cols && i > 2)
-			return(bad_align_err());
+			return (bad_align_err());
 	}
 	close(fd);
 	return (cols);

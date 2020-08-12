@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:32:04 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/12 13:06:36 by etorren          ###   ########.fr       */
+/*   Updated: 2020/08/12 13:40:45 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ char		**build_remaining(long int rows, long int cols,\
 		i++;
 		j = 1;
 	}
-	return(submap);
+	return (submap);
 }
 
 void		find_biggest(char **map)

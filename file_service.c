@@ -6,14 +6,15 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 11:35:48 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/12 13:01:13 by etorren          ###   ########.fr       */
+/*   Updated: 2020/08/12 13:44:27 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "read.h"
 
 /*
-**
+** This functions using for reduce amount of lines in 'file works' functions.\
+** They simply print error to reserved output and return negative value.
 */
 
 int		open_err(void)
