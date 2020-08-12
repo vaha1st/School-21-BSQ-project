@@ -6,7 +6,7 @@
 /*   By: etorren <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 20:46:48 by etorren           #+#    #+#             */
-/*   Updated: 2020/08/12 12:11:49 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/12 12:31:49 by etorren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_puterr(char *str)
 	}
 }
 
-int		rows_size(char *av, char c)
+int		rows_count(char *av, char c)
 {
 	int			fd;
 	long int	rows;
@@ -61,7 +61,7 @@ int		rows_size(char *av, char c)
 	return (rows);
 }
 
-int		cols_len(char *av, long int rows, char c)
+int		rows_len(char *av, long int rows, char c)
 {
 	int			fd;
 	long int	cols;

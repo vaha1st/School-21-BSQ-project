@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:13:30 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/12 11:57:19 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/12 12:31:53 by etorren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	read_file(char *av, char c)
 
 	rows = 0;
 	cols = 0;
-	rows = rows_size(av, c);
+	rows = rows_count(av, c);
 	if (rows == -1)
 		return ;
-	cols = cols_len(av, rows, c);
+	cols = rows_len(av, rows, c);
 	if (cols == -1)
 		return ;
 	map = map_create(av, rows, cols, c);
