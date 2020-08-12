@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:36:29 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/11 18:02:29 by etorren          ###   ########.fr       */
+/*   Updated: 2020/08/12 15:31:08 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 ** character if it mathes or doing nothing if it's not. Returns 'c'.
 **
 ** min(*) finds a less character by ascii of three given.
+**
+** ft_atoi(*) is light functional atoi.
 */
 
 void	ft_putstr(char *str)
@@ -62,4 +64,30 @@ char	min(char m1, char m2, char m3)
 	(tmp > m2 ? tmp = m2 : 1);
 	(tmp > m3 ? tmp = m3 : 1);
 	return (tmp);
+}
+
+int		ft_atoi(char *str)
+{
+	int	nbr;
+	int	np;
+	int i;
+
+	nbr = 0;
+	np = 1;
+	i = 0;
+	while (str[i] != '\0' && (str[i] == ' ' || str[i] == '\n' || str[i] == '\t'
+	|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r'))
+		i++;
+	while (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			np *= -1;
+		i++;
+	}
+	while (str[i] != '\0' && (str[i] >= 48 && str[i] <= 57))
+	{
+		nbr = nbr * 10 + (str[i] - 48);
+		i++;
+	}
+	return (nbr * np);
 }

@@ -6,13 +6,11 @@
 /*   By: etorren <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 20:46:48 by etorren           #+#    #+#             */
-/*   Updated: 2020/08/12 13:42:48 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/12 16:09:55 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "read.h"
-#include <unistd.h>
-#include <fcntl.h>
 
 /*
 ** ft_puterr(*) takes a string and display it in reserved for errors
@@ -28,7 +26,7 @@
 ** Ads null pointer to the end of each line.
 */
 
-void	ft_puterr(char *str)
+void		ft_puterr(char *str)
 {
 	int i;
 
@@ -40,7 +38,7 @@ void	ft_puterr(char *str)
 	}
 }
 
-int		rows_count(char *av, char c)
+long int	rows_count(char *av, char c)
 {
 	int			fd;
 	long int	rows;
@@ -61,7 +59,7 @@ int		rows_count(char *av, char c)
 	return (rows);
 }
 
-int		rows_len(char *av, long int rows, char c)
+long int	rows_len(char *av, long int rows, char c)
 {
 	int			fd;
 	long int	cols;
@@ -88,7 +86,7 @@ int		rows_len(char *av, long int rows, char c)
 	return (cols);
 }
 
-int		check_map(char **map, char *head, long int rows)
+int			check_map(char **map, char *head, long int rows)
 {
 	int i;
 	int j;
@@ -116,7 +114,7 @@ int		check_map(char **map, char *head, long int rows)
 	return (0);
 }
 
-char	**map_create(char *av, long int row, long int cols, char c)
+char		**map_create(char *av, long int row, long int cols, char c)
 {
 	long int	i;
 	int			j;

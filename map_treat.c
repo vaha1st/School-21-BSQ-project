@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 13:53:19 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/12 13:43:09 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/12 16:08:05 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@
 ** related square on the original map with character given as 'full'.
 **
 ** print_map_wo_header(*) just prints map row by row without first line.
-**
-** free_map(*) frees memory of all rows on map firstly, then frees\
-** the map itself.
 **
 ** retrieve_params(*) takes a header (first row) of the map and retrieves\
 ** 'free', 'obstacle' and 'full' characters. Reterns result as a string.
@@ -96,18 +93,6 @@ void	print_map_wo_header(char **map, long int rows)
 	}
 }
 
-void	free_map(char **map)
-{
-	int			i;
-	long int	rows;
-
-	i = 0;
-	rows = count_rows(map);
-	while (i < rows)
-		free(map[i++]);
-	free(map);
-}
-
 char	*retrieve_params(char **map)
 {
 	long int	i;
@@ -129,4 +114,33 @@ char	*retrieve_params(char **map)
 		params[i++] = map[0][count++];
 	params[i] = '\0';
 	return (params);
+}
+
+int		check_num(char **map)
+{
+	long int	i;
+	long int	rows;
+	int			count;
+	char		*num;
+
+	count = 0;
+	rows = count_rows(map);
+	rows--;
+	i = 0;
+	while (rows)
+	{
+		rows /= 10;
+		count++;
+	}
+	num = (char *)malloc(sizeof(char) * count);
+	while (i < count)
+	{
+		num[i] = map[0][i];
+		i++;
+	}
+	num[i] = '\0';
+	rows = count_rows(map) - 1;
+	if (ft_atoi(num) != rows || rows == 0)
+		return (-1);
+	return (0);
 }
