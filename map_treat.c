@@ -19,8 +19,6 @@
 ** the max value. Then it replaces the same element of array and\
 ** related square on the original map with character given as 'full'.
 **
-** print_map_wo_header(*) just prints map row by row without first line.
-**
 ** retrieve_params(*) takes a header (first row) of the map and retrieves\
 ** 'free', 'obstacle' and 'full' characters. Reterns result as a string.
 */
@@ -83,18 +81,6 @@ void	fill_map(char max, char **submap, char **map, char *params)
 		}
 		i[0]++;
 		i[1] = 0;
-	}
-}
-
-void	print_map_wo_header(char **map, long int rows)
-{
-	int i;
-
-	i = 1;
-	while (i < rows)
-	{
-		ft_putstr(map[i++]);
-		ft_putstr("\n");
 	}
 }
 

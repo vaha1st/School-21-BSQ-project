@@ -17,6 +17,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 
+void		ft_putstr(char *str);
 void		ft_puterr(char *str);
 long int	rows_count(char *av, char c);
 long int	rows_len(char *av, long int row, char c);

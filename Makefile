@@ -15,7 +15,7 @@ SRC		= main.c map_create.c logic.c helpers.c map_treat.c\
 BIN		= bsq
 CONVO	= ${SRC:.c=.o}
 FLAGS	= -Wall -Wextra -Werror
-COMP	= gcc ${FLAGS}
+COMP	= gcc ${FLAGS} -Iheaders
 
 .c.o:
 	${COMP} -c $<

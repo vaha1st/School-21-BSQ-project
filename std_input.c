@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 18:30:05 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/12 13:41:14 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/12 18:01:46 by masharla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 ** std_input_read(*) reads from standard input line by line and\
 ** stops when ^D is occure. Result writes to the file with\
 ** file name given as parameter.
+**
+** print_map_wo_header(*) just prints map row by row without first line.
 */
 
 int		std_input_read(char *file_name)
@@ -45,4 +47,16 @@ int		std_input_read(char *file_name)
 	if (fd >= 0)
 		close(fd);
 	return (0);
+}
+
+void	print_map_wo_header(char **map, long int rows)
+{
+	int i;
+
+	i = 1;
+	while (i < rows)
+	{
+		ft_putstr(map[i++]);
+		ft_putstr("\n");
+	}
 }
