@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:13:30 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/12 12:31:53 by etorren          ###   ########.fr       */
+/*   Updated: 2020/08/12 13:06:33 by etorren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,11 @@ void	read_file(char *av, char c)
 	if (cols == -1)
 		return ;
 	map = map_create(av, rows, cols, c);
-	ft_puterr("----map created----\n");
 	if (check_map(map, retrieve_params(map), rows) == 1)
 		return ;
 	if (check_map(map, retrieve_params(map), rows) == -1)
 	{
-		ft_puterr("Map error: incorrect char in map matrix\n");
+		ft_puterr("map error: incorrect char in map matrix\n");
 		return ;
 	}
 	find_biggest(map);
@@ -59,7 +58,7 @@ int		main(int ac, char **av)
 		ac--;
 		i++;
 		if (ac != 1)
-			ft_puterr("\n****======Next map=====****\n\n");
+			write(1, "\n", 1);
 	}
 	return (0);
 }

@@ -6,12 +6,11 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:32:04 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/12 12:22:24 by etorren          ###   ########.fr       */
+/*   Updated: 2020/08/12 13:06:36 by etorren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bsq.h"
-#include <stdio.h>
 
 /*
 ** count_rows(*) and count_cols(*) take the original map and count its\
@@ -99,16 +98,7 @@ char		**build_remaining(long int rows, long int cols,\
 		i++;
 		j = 1;
 	}
-
-
-	i = 0;
-	printf("\n============Submap=========\n\n");
-	while (i < rows -1)
-	{
-		printf("%s\n", submap[i]);
-		i++;
-	}
-	return (submap);
+	return(submap);
 }
 
 void		find_biggest(char **map)
@@ -126,7 +116,6 @@ void		find_biggest(char **map)
 	submap = build_remaining(rows, cols, map, params);
 	fill_map(find_max(rows, cols, submap), submap, map, params);
 	free_map(submap);
-	printf("\n=========Final map========\n\n");
 	print_map_wo_header(map, rows);
 	free_map(map);
 	free(params);
