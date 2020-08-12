@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 11:35:48 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/12 15:59:33 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/12 17:50:26 by etorren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,10 @@ int		read_err(int fd)
 
 void	free_map(char **map)
 {
-	int			i;
 	long int	rows;
 
-	i = 0;
-	rows = count_rows(map);
-	while (i < rows)
-		free(map[i++]);
+	rows = count_rows(map) - 1;
+	while (0 <= rows)
+		free(map[rows--]);
 	free(map);
 }
