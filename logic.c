@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:32:04 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/11 21:01:44 by etorren          ###   ########.fr       */
+/*   Updated: 2020/08/12 12:22:24 by etorren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 long int	count_rows(char **map)
 {
 	int i;
-	
+
 	i = 0;
 	while (map[i][0])
 		i++;
@@ -72,6 +72,7 @@ char		**build_first_row_col(long int rows, long int cols,\
 		submap[0][j] = convert(map[1][j], params[0], params[1]);
 		j++;
 	}
+	submap[0][j] = '\0';
 	return (submap);
 }
 
@@ -94,12 +95,13 @@ char		**build_remaining(long int rows, long int cols,\
 			((submap[i][j] = 48)));
 			j++;
 		}
+		submap[i][j] = '\0';
 		i++;
 		j = 1;
 	}
 
-	i = 0;
 
+	i = 0;
 	printf("\n============Submap=========\n\n");
 	while (i < rows -1)
 	{
