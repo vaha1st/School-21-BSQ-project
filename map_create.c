@@ -6,7 +6,7 @@
 /*   By: etorren <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 20:46:48 by etorren           #+#    #+#             */
-/*   Updated: 2020/08/12 18:47:59 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/12 21:20:17 by etorren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ long int	rows_count(char *av, char c)
 		return (open_err());
 	while ((ret = read(fd, &c, 1)) > 0)
 	{
+		if (c < 32 && c != '\n')
+			return (read_err(fd));
 		if (c == '\n')
 			rows++;
 	}
@@ -69,14 +71,14 @@ long int	rows_len(char *av, long int rows, char c)
 	long int	cols;
 	ssize_t		ret;
 	long int	i;
-	int			check;
+	long int	check;
 
 	i = 0;
 	cols = 0;
 	fd = open(av, O_RDONLY);
 	if (fd < 0)
 		return (open_err());
-	while (i < rows - 1)
+	while (i < rows)
 	{
 		check = cols;
 		cols = 0;
@@ -132,7 +134,7 @@ char		**map_create(char *av, long int row, long int cols, char c)
 	while (i < row + 1)
 	{
 		j = 0;
-		map[i] = (char *)malloc(sizeof(char) * (cols + 6));
+		map[i] = (char *)malloc(sizeof(i) * (cols + 6));
 		while ((ret = read(fd, &c, 1)) > 0 && c != '\n')
 		{
 			map[i][j] = c;

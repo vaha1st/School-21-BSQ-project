@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 18:30:05 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/12 18:01:46 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/12 21:45:40 by etorren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,10 @@ int		std_input_read(char *file_name)
 			return (-1);
 		}
 		if (ret == 0)
-		{
-			write(fd, "\n", 1);
 			break ;
-		}
 		write(fd, &c, 1);
 	}
-	if (fd >= 0)
-		close(fd);
+	close(fd);
 	return (0);
 }
 
