@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 18:30:05 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/12 21:45:40 by etorren          ###   ########.fr       */
+/*   Updated: 2020/08/12 22:26:59 by etorren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,25 @@ int		std_input_read(char *file_name)
 	}
 	close(fd);
 	return (0);
+}
+
+int		head_read(char *av)
+{
+	int		fd;
+	ssize_t	ret;
+	char	c;
+	int		i;
+
+	i = 0;
+	fd = open(av, O_RDONLY);
+	while ((ret = read(fd, &c, 1)) > 0)
+	{
+		if (c == '\n')
+			break ;
+		i++;
+	}
+	close(fd);
+	return (i);
 }
 
 void	print_map_wo_header(char **map, long int rows)

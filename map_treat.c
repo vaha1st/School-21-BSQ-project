@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 13:53:19 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/12 18:31:54 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/12 22:19:48 by etorren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ char	*retrieve_params(char **map)
 	return (params);
 }
 
-int		check_num(char **map)
+int		check_num(char **map, char *av)
 {
 	long int	i;
 	long int	rows;
@@ -131,7 +131,7 @@ int		check_num(char **map)
 	}
 	num[i] = '\0';
 	rows = count_rows(map) - 1;
-	if (ft_atoi(num) != rows || rows == 0)
+	if (ft_atoi(num) != rows || rows == 0 || (count + 3) != head_read(av))
 		return (-1);
 	return (0);
 }

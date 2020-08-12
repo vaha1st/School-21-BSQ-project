@@ -6,7 +6,7 @@
 /*   By: etorren <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 18:42:56 by etorren           #+#    #+#             */
-/*   Updated: 2020/08/12 16:02:18 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/12 22:21:02 by etorren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void		ft_puterr(char *str);
 long int	rows_count(char *av, char c);
 long int	rows_len(char *av, long int row, char c);
 char		**map_create(char *av, long int row, long int cols, char c);
-void		find_biggest(char **map);
+void		find_biggest(char **map, char *av);
 char		*retrieve_params(char **map);
 int			check_map(char **map, char *params, long int rows);
 int			std_input_read(char *file_name);

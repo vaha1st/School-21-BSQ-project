@@ -6,7 +6,7 @@
 /*   By: masharla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 10:32:04 by masharla          #+#    #+#             */
-/*   Updated: 2020/08/12 18:33:54 by masharla         ###   ########.fr       */
+/*   Updated: 2020/08/12 22:23:59 by etorren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ char		**build_remaining(long int rows, long int cols,\
 	return (submap);
 }
 
-void		find_biggest(char **map)
+void		find_biggest(char **map, char *av)
 {
 	int			i;
 	long int	rows;
@@ -113,7 +113,7 @@ void		find_biggest(char **map)
 	rows = count_rows(map);
 	cols = count_cols(map);
 	params = retrieve_params(map);
-	if (check_num(map) < 0 || ft_strlen(params) < 3)
+	if (check_num(map, av) < 0 || ft_strlen(params) < 3)
 	{
 		ft_puterr("map error\n");
 		return ;

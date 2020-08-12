@@ -6,7 +6,7 @@
 /*   By: etorren <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 20:24:42 by etorren           #+#    #+#             */
-/*   Updated: 2020/08/12 21:43:36 by etorren          ###   ########.fr       */
+/*   Updated: 2020/08/12 22:20:31 by etorren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	read_file(char *av, char c)
 		ft_puterr("map error\n");
 		return ;
 	}
-	find_biggest(map);
+	find_biggest(map, av);
 }
 
 int		main(int ac, char **av)

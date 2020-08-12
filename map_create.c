@@ -6,7 +6,7 @@
 /*   By: etorren <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 20:46:48 by etorren           #+#    #+#             */
-/*   Updated: 2020/08/12 21:20:17 by etorren          ###   ########.fr       */
+/*   Updated: 2020/08/12 22:28:01 by etorren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ long int	rows_len(char *av, long int rows, char c)
 		cols = 0;
 		while ((ret = read(fd, &c, 1)) > 0 && c != '\n')
 			cols++;
+		if (cols > 23 && i == 0)
+			return (bad_align_err());
 		i++;
 		if (check != cols && i > 2)
 			return (bad_align_err());
@@ -134,7 +136,7 @@ char		**map_create(char *av, long int row, long int cols, char c)
 	while (i < row + 1)
 	{
 		j = 0;
-		map[i] = (char *)malloc(sizeof(i) * (cols + 6));
+		map[i] = (char *)malloc(sizeof(char) * (cols + 6));
 		while ((ret = read(fd, &c, 1)) > 0 && c != '\n')
 		{
 			map[i][j] = c;
